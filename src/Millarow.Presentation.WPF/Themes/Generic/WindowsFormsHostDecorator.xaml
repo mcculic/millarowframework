@@ -1,0 +1,24 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:Controls="clr-namespace:Millarow.Presentation.WPF.Controls">
+
+    <ControlTemplate x:Key="WindowsFormsHostDecoratorTemplate" TargetType="{x:Type Controls:WindowsFormsHostDecorator}">
+        <Label BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" 
+               Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}"
+               HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+               VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+               Content="{TemplateBinding View}" />
+    </ControlTemplate>
+
+    <Style x:Key="{x:Type Controls:WindowsFormsHostDecorator}" TargetType="{x:Type Controls:WindowsFormsHostDecorator}">
+        <Setter Property="Template" Value="{StaticResource WindowsFormsHostDecoratorTemplate}" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="RenderOptions.BitmapScalingMode" Value="NearestNeighbor" />
+        <Setter Property="Padding" Value="0" />
+    </Style>
+</ResourceDictionary>

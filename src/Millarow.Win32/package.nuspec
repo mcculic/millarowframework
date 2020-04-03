@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Millarow.Win32</id>
+    <version>0.5.0</version>
+    <title>Millarow.Win32</title>
+    <authors>Igor Kulik</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Millarow.Win32</description>
+    <releaseNotes>none</releaseNotes>
+    <copyright>Copyright © Igor Kulik 2017</copyright>
+    <license type="expression">MIT</license>
+    <repository type="git" url="https://github.com/mcculic/millarowframework" />
+    <dependencies>
+      <dependency id="Millarow.Common" version="1.0.0" />
+    </dependencies>
+  </metadata>
+</package>

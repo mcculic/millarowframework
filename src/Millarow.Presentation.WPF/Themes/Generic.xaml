@@ -1,0 +1,19 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Millarow.Presentation.WPF;component/Themes/Generic/ShadowBox.xaml" />
+        <ResourceDictionary Source="/Millarow.Presentation.WPF;component/Themes/Generic/ChildWindow.xaml" />
+        <ResourceDictionary Source="/Millarow.Presentation.WPF;component/Themes/Generic/PropertyListItem.xaml" />
+        <ResourceDictionary Source="/Millarow.Presentation.WPF;component/Themes/Generic/ModalHost.xaml" />
+        <ResourceDictionary Source="/Millarow.Presentation.WPF;component/Themes/Generic/WindowsFormsHostDecorator.xaml" />
+        <ResourceDictionary Source="/Millarow.Presentation.WPF;component/Themes/Generic/TextEditLabel.xaml" />
+        <ResourceDictionary Source="/Millarow.Presentation.WPF;component/Themes/Generic/FocusAccentAdornerDecorator.xaml" />
+        <ResourceDictionary Source="/Millarow.Presentation.WPF;component/Themes/Generic/CustomWindow.xaml" />
+        <ResourceDictionary Source="/Millarow.Presentation.WPF;component/Themes/Generic/LineBusyIndicator.xaml" />
+        <ResourceDictionary Source="/Millarow.Presentation.WPF;component/Themes/Generic/CommandBar.xaml" />
+        <ResourceDictionary Source="/Millarow.Presentation.WPF;component/Themes/Generic/BusyControl.xaml" />
+        <ResourceDictionary Source="/Millarow.Presentation.WPF;component/Themes/Generic/CommandBar.xaml" />
+        <ResourceDictionary Source="/Millarow.Presentation.WPF;component/Themes/Generic/CommandBarItem.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

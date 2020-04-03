@@ -1,0 +1,67 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:Controls="clr-namespace:Millarow.Presentation.WPF.Controls"
+                    xmlns:Markup="clr-namespace:Millarow.Presentation.WPF.Markup">
+
+    <ControlTemplate x:Key="ModalHostItemTemplate" TargetType="{x:Type Controls:ModalHostItem}">
+        <Border VerticalAlignment="{TemplateBinding VerticalAlignment}" Focusable="False"
+                HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}"
+                BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+            <ContentPresenter ContentSource="Content"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
+        </Border>
+    </ControlTemplate>
+
+    <Style x:Key="{x:Type Controls:ModalHostItem}" TargetType="Controls:ModalHostItem">
+        <Setter Property="Template" Value="{StaticResource ModalHostItemTemplate}" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="{Binding DialogHorizontalAlignment, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Controls:ModalHost}}" />
+        <Setter Property="VerticalContentAlignment" Value="{Binding DialogVerticalAlignment, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Controls:ModalHost}}" />
+    </Style>
+
+    <ControlTemplate x:Key="ModalHostTemplate" TargetType="{x:Type Controls:ModalHost}">
+        <AdornerDecorator>
+            <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}"
+                    BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                <Grid>
+                    <ContentPresenter Name="PART_Content" ContentSource="Content"
+                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+
+                    <Border Background="{TemplateBinding OverlayBrush}" Opacity="{TemplateBinding OverlayOpacity}"
+                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                            Visibility="{Markup:BoolVisibility HasItems, RelativeSource={RelativeSource TemplatedParent}}" />
+
+                    <ContentControl Name="PART_Host" Focusable="False" FocusVisualStyle="{x:Null}" FocusManager.IsFocusScope="True">
+                        <ItemsPresenter HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                    </ContentControl>
+                </Grid>
+            </Border>
+        </AdornerDecorator>
+
+        <ControlTemplate.Triggers>
+            <Trigger Property="HasItems" Value="True">
+                <Trigger.Setters>
+                    <Setter TargetName="PART_Content" Property="Controls:WindowsFormsHostDecorator.CompatibilityMode" Value="True" />
+                </Trigger.Setters>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ItemsPanelTemplate x:Key="ModalHostItemsPanelTemplate">
+        <Grid />
+    </ItemsPanelTemplate>
+
+    <Style x:Key="{x:Type Controls:ModalHost}" TargetType="Controls:ModalHost">
+        <Setter Property="Template" Value="{StaticResource ModalHostTemplate}" />
+        <Setter Property="ItemsPanel" Value="{StaticResource ModalHostItemsPanelTemplate}" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="DialogHorizontalAlignment" Value="Stretch" />
+        <Setter Property="DialogVerticalAlignment" Value="Stretch" />
+    </Style>
+</ResourceDictionary>

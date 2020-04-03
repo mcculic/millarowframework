@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+	<Product>Millarow Framework</Product>
+    <Authors>Igor Kulik</Authors>
+    <Copyright>© Igor Kulik 2020</Copyright>
+    <Version>0.5.0</Version>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageProjectUrl />
+    <RepositoryUrl>https://github.com/mcculic/millarowframework</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="System.Reflection.Emit" Version="4.3.0" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\Millarow.Common\Millarow.Common.csproj" />
+  </ItemGroup>
+
+  <Import Project="..\Millarow.Shared\Millarow.Shared.projitems" Label="Shared" />
+</Project>

@@ -1,0 +1,85 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:Controls="clr-namespace:Millarow.Presentation.WPF.Controls"
+                    xmlns:Markup="clr-namespace:Millarow.Presentation.WPF.Markup">
+
+    <ControlTemplate x:Key="ChildWindowTemplate" TargetType="{x:Type Controls:ChildWindow}">
+        <Grid>
+            <!--TODO при прозрачном фоне все становится черным из-за тени-->
+            <Controls:ShadowBox Visibility="{Markup:BoolVisibility DropShadow, RelativeSource={RelativeSource TemplatedParent}}" Color="Gray" BlurRadius="16" />
+            
+            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                <DockPanel LastChildFill="True">
+                    <Border DockPanel.Dock="Top" Background="{TemplateBinding TitleBackground}"
+                            HorizontalAlignment="Stretch" Name="PART_Title"
+                            MinHeight="{TemplateBinding TitleMinHeight}" 
+                            Visibility="{Markup:BoolVisibility ShowTitle, RelativeSource={RelativeSource TemplatedParent}}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <Border Grid.Column="0" Name="PART_Icon" Padding="{TemplateBinding IconPadding}" 
+                                    VerticalAlignment="{TemplateBinding IconVerticalAlignment}"
+                                    Visibility="{Markup:BoolVisibility ShowIcon, RelativeSource={RelativeSource TemplatedParent}}">
+                                <ContentPresenter ContentSource="Icon" />
+                            </Border>
+
+                            <Label Grid.Column="1" Name="PART_Header" Foreground="{TemplateBinding HeaderForeground}"
+                                   Padding="{TemplateBinding HeaderPadding}" Focusable="False"
+                                   VerticalAlignment="{TemplateBinding HeaderVerticalAlignment}" HorizontalAlignment="Stretch"
+                                   Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                   ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}" 
+                                   ContentStringFormat="{TemplateBinding ContentStringFormat}">
+                            </Label>
+
+                            <Border Grid.Column="2" Name="PART_Commands" Padding="{TemplateBinding CommandsPadding}"
+                                    Visibility="{Markup:BoolVisibility ShowCommands, RelativeSource={RelativeSource TemplatedParent}}"
+                                    VerticalAlignment="{TemplateBinding CommandsVerticalAlignment}">
+                                <ContentPresenter ContentSource="Commands" />
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                    <Border Name="PART_Content" Padding="{TemplateBinding Padding}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                        <ContentPresenter ContentSource="Content" />
+                    </Border>
+                </DockPanel>
+            </Border>
+        </Grid>
+    </ControlTemplate>
+
+    <Style x:Key="{x:Type Controls:ChildWindow}" TargetType="{x:Type Controls:ChildWindow}">
+        <Setter Property="Template" Value="{StaticResource ChildWindowTemplate}" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Padding" Value="5" />
+        <Setter Property="Background" Value="{x:Static SystemColors.WindowBrush}" />
+        <Setter Property="BorderBrush" Value="{x:Static SystemColors.WindowFrameBrush}" />
+        <Setter Property="TitleBackground" Value="{x:Static SystemColors.WindowBrush}" />
+        <Setter Property="HeaderForeground" Value="{x:Static SystemColors.WindowTextBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="HeaderVerticalAlignment" Value="Center" />
+        <Setter Property="HeaderPadding" Value="5" />
+        <Setter Property="IconPadding" Value="5" />
+        <Setter Property="IconVerticalAlignment" Value="Center" />
+        <Setter Property="DropShadow" Value="True" />
+        <Setter Property="CommandsVerticalAlignment" Value="Stretch" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="IsActive" Value="True" />
+
+        <Style.Triggers>
+            <Trigger Property="IsActive" Value="False">
+                <Setter Property="HeaderForeground" Value="{x:Static SystemColors.GrayTextBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

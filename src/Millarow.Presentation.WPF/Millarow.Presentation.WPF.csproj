@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DBC13BD2-1E76-411E-900E-CA9F378D8A76}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <RootNamespace>Millarow.Presentation.WPF</RootNamespace>
+    <AssemblyName>Millarow.Presentation.WPF</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Controls\EmbeddedKeyboard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic\BusyControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic\ChildWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic\CommandBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic\CommandBarItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic\CustomWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic\FocusAccentAdornerDecorator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic\LineBusyIndicator.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic\ModalHost.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic\PropertyListItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic\ShadowBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic\TextEditLabel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic\WindowsFormsHostDecorator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controls\BusyControl.cs" />
+    <Compile Include="Controls\BusyControlAdorner.cs" />
+    <Compile Include="Controls\CachedContentPresenter.cs" />
+    <Compile Include="Controls\ChildWindow.cs" />
+    <Compile Include="Controls\CommandBar.cs" />
+    <Compile Include="Controls\CommandBarItem.cs" />
+    <Compile Include="Controls\CustomWindow.cs" />
+    <Compile Include="Controls\FocusAccentAdorner.cs" />
+    <Compile Include="Controls\FocusAccentAdornerDecorator.cs" />
+    <Compile Include="Controls\LineBusyIndicator.cs" />
+    <Compile Include="Controls\ModalHost.cs" />
+    <Compile Include="Controls\ModalHostItem.cs" />
+    <Compile Include="Controls\EmbeddedKeyboard.xaml.cs">
+      <DependentUpon>EmbeddedKeyboard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EmbeddedKeyboardLayout.cs" />
+    <Compile Include="Controls\EmbeddedKeyboardSymbol.cs" />
+    <Compile Include="Controls\PopupContainer.cs" />
+    <Compile Include="Controls\PropertyList.cs" />
+    <Compile Include="Controls\PropertyListItem.cs" />
+    <Compile Include="Controls\PropertyListItemHeaderAnchor.cs" />
+    <Compile Include="Controls\ShadowBox.cs" />
+    <Compile Include="Controls\SwitchControl.cs" />
+    <Compile Include="Controls\SwitchControlItem.cs" />
+    <Compile Include="Controls\TextBoxHelper.cs" />
+    <Compile Include="Controls\TextEditLabel.cs" />
+    <Compile Include="Controls\WindowsFormsHostDecorator.cs" />
+    <Compile Include="Converters\AbstractTypedConverter`2.cs" />
+    <Compile Include="Converters\AbstractTypedConverter`3.cs" />
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\MappedCollectionConverter`2.cs" />
+    <Compile Include="Converters\NameToImageConverter.cs" />
+    <Compile Include="Converters\KeyValueConverter.cs" />
+    <Compile Include="Converters\KeyValueConverterItem.cs" />
+    <Compile Include="Converters\MultiplyConverter.cs" />
+    <Compile Include="Converters\PropertyTitleConverter`1.cs" />
+    <Compile Include="Framework\AbstractCommand`1.cs" />
+    <Compile Include="Framework\AbstractCommand`2.cs" />
+    <Compile Include="Framework\ListSyncManager`1.cs" />
+    <Compile Include="Framework\AppProperty.cs" />
+    <Compile Include="Framework\AppServiceLocator.cs" />
+    <Compile Include="Framework\BindableBase.cs" />
+    <Compile Include="Framework\AbstractCommand.cs" />
+    <Compile Include="Framework\BindingHelper.cs" />
+    <Compile Include="Framework\DelegateCommand.cs" />
+    <Compile Include="Framework\DelegateCommand`1.cs" />
+    <Compile Include="Framework\DependencyMap.cs" />
+    <Compile Include="Framework\DependencyObjectHelper.cs" />
+    <Compile Include="Framework\DependsOnAttribute.cs" />
+    <Compile Include="Controls\ModalHostAdorner.cs" />
+    <Compile Include="Framework\DisplayInfo.cs" />
+    <Compile Include="Framework\MappedObservableCollection.cs" />
+    <Compile Include="Framework\ViewModel.cs" />
+    <Compile Include="Framework\RectHelper.cs" />
+    <Compile Include="Input\KeyboardAction.cs" />
+    <Compile Include="Input\KeyboardActionHandler`2.cs" />
+    <Compile Include="Input\MouseInfo.cs" />
+    <Compile Include="Input\RectManipulations.cs" />
+    <Compile Include="Input\MoverManipulationEventArgs.cs" />
+    <Compile Include="Input\MoverManipulationInfo.cs" />
+    <Compile Include="Input\MoverPerformManipulationEventArgs.cs" />
+    <Compile Include="Input\MoveUtility.cs" />
+    <Compile Include="Input\Mover.cs" />
+    <Compile Include="Input\MoverElementTestEventArgs.cs" />
+    <Compile Include="Interop\InteropBitmap.cs" />
+    <Compile Include="Interop\InteropBitmapFormat.cs" />
+    <Compile Include="Interop\Taskbar.cs" />
+    <Compile Include="Markup\AbstractBindingExtension.cs" />
+    <Compile Include="Markup\AppPropertyExtension.cs" />
+    <Compile Include="Markup\BoolVisibilityExtension.cs" />
+    <Compile Include="Markup\PropertyTitleExtension.cs" />
+    <Compile Include="MVP\AsyncCommand.cs" />
+    <Compile Include="MVP\AsyncCommand`1.cs" />
+    <Compile Include="MVP\AsyncCommand`2.cs" />
+    <Compile Include="MVP\Framework\IPlatformWindowHost.cs" />
+    <Compile Include="MVP\Framework\IChildWindowDialogHost.cs" />
+    <Compile Include="MVP\Framework\IScreenNavigationHost.cs" />
+    <Compile Include="MVP\Framework\IOwnerWindowProvider.cs" />
+    <Compile Include="MVP\Framework\MessageBoxIconConverter.cs" />
+    <Compile Include="MVP\Command`2.cs" />
+    <Compile Include="MVP\ViewModels\DialogViewModel.cs" />
+    <Compile Include="MVP\ViewModels\ScreenViewModel.cs" />
+    <Compile Include="MVP\ViewModels\WaitDialogViewModel.cs" />
+    <Compile Include="Threading\DispatcherSynchronizationInvoke.cs" />
+    <Compile Include="MVP\Framework\ForegroundOwnerWindowProvider.cs" />
+    <Compile Include="MVP\Command.cs" />
+    <Compile Include="MVP\Command`1.cs" />
+    <Compile Include="MVP\Services\ControlNavigationService.cs" />
+    <Compile Include="MVP\Services\ChildWindowDialogService.cs" />
+    <Compile Include="MVP\Services\PlatformDialogService.cs" />
+    <Compile Include="MVP\Services\PlatformFileDialogService.cs" />
+    <Compile Include="MVP\Services\PlatformMessageBoxService.cs" />
+    <Compile Include="MVP\ViewModels\BusyStateViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="package.nuspec" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Millarow.Common\Millarow.Common.csproj">
+      <Project>{550ae3c2-dd8a-47f7-bfc7-db5af5851cb3}</Project>
+      <Name>Millarow.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Millarow.Presentation\Millarow.Presentation.csproj">
+      <Project>{813b8415-4d90-445c-802d-979cb457e60d}</Project>
+      <Name>Millarow.Presentation</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="..\Millarow.Shared\Millarow.Shared.projitems" Label="Shared" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

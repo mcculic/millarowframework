@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Millarow.Presentation.WPF</id>
+    <version>0.5.0</version>
+    <title>Millarow.Presentation.WPF</title>
+    <authors>Igor Kulik</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Millarow.Presentation.WPF</description>
+    <releaseNotes>none</releaseNotes>
+    <copyright>Copyright © Igor Kulik 2017</copyright>
+    <license type="expression">MIT</license>
+    <repository type="git" url="https://github.com/mcculic/millarowframework" />
+    <dependencies>
+      <dependency id="Millarow.Common" version="1.0.0" />
+      <dependency id="Millarow.Presentation" version="0.5.0" />
+      <dependency id="Millarow.Win32" version="0.5.0" />
+    </dependencies>
+  </metadata>
+</package>

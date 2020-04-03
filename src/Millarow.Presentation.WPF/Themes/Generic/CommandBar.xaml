@@ -1,0 +1,31 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:Controls="clr-namespace:Millarow.Presentation.WPF.Controls">
+
+    <ControlTemplate x:Key="CommandBarTemplate" TargetType="Controls:CommandBar">
+        <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}"
+                BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+            <ItemsPresenter Name="PART_Host" 
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+        </Border>
+
+        <ControlTemplate.Triggers>
+            <Trigger Property="Orientation" Value="Vertical">
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ItemsPanelTemplate x:Key="CommandBarItemsPanelTemplate">
+        <StackPanel Orientation="{Binding Orientation, RelativeSource={RelativeSource FindAncestor, AncestorType=Controls:CommandBar}}" />
+    </ItemsPanelTemplate>
+
+    <Style x:Key="{x:Type Controls:CommandBar}" TargetType="Controls:CommandBar">
+        <Setter Property="Template" Value="{StaticResource CommandBarTemplate}" />
+        <Setter Property="ItemsPanel" Value="{StaticResource CommandBarItemsPanelTemplate}" />
+        <Setter Property="Orientation" Value="Horizontal" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+    </Style>
+</ResourceDictionary>

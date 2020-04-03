@@ -1,0 +1,26 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:Controls="clr-namespace:Millarow.Presentation.WPF.Controls">
+
+    <ControlTemplate x:Key="LabelEditorTemplate" TargetType="{x:Type Controls:TextEditLabel}">
+        <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" 
+                Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}"
+                FocusManager.IsFocusScope="True">
+            <Grid>
+                <TextBox Name="PART_Edit" 
+                         Text="{Binding Text, RelativeSource={RelativeSource Mode=TemplatedParent}, UpdateSourceTrigger=PropertyChanged}"
+                         TextAlignment="{TemplateBinding TextAlignment}"
+                         MaxLength="{TemplateBinding MaxLength}" 
+                         IsUndoEnabled="{TemplateBinding IsUndoEnabled}"
+                         HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" />
+
+                <TextBlock Name="PART_View" Focusable="{TemplateBinding Focusable}"
+                           Text="{Binding Text, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+            </Grid>
+        </Border>
+    </ControlTemplate>
+
+    <Style x:Key="{x:Type Controls:TextEditLabel}" TargetType="{x:Type Controls:TextEditLabel}">
+        <Setter Property="Template" Value="{StaticResource LabelEditorTemplate}" />
+    </Style>
+</ResourceDictionary>

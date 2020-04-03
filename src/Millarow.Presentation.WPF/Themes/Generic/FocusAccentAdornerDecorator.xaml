@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:Controls="clr-namespace:Millarow.Presentation.WPF.Controls">
+
+    <Style x:Key="{x:Type Controls:FocusAccentAdornerDecorator}" TargetType="{x:Type Controls:FocusAccentAdornerDecorator}">
+        <Setter Property="OverlayBackground" Value="#20000000" />
+        <Setter Property="OverlayOpacity" Value="1" />
+        <Setter Property="AccentBorder">
+            <Setter.Value>
+                <Pen Brush="Red" Thickness="1" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
