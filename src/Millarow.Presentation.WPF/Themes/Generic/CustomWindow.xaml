@@ -1,15 +1,17 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:Markup="clr-namespace:Millarow.Presentation.WPF.Markup"
                     xmlns:Controls="clr-namespace:Millarow.Presentation.WPF.Controls">
 
-    <BooleanToVisibilityConverter x:Key="VisibilityConverter" />
-
-    <Style x:Key="CustomWindowButtonStyle" TargetType="Button">
+    <Style x:Key="CustomWindowSytemButtonStyle" TargetType="Button">
         <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Width" Value="{Binding HeaderHeight, RelativeSource={RelativeSource FindAncestor, AncestorType=Controls:CustomWindow}}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Label Name="lbl" Padding="{TemplateBinding Padding}" Background="Transparent"
+                    <Label Name="lbl" Padding="{TemplateBinding Padding}" 
+                           Background="{TemplateBinding Background}" Foreground="{TemplateBinding Foreground}"
                            Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"
                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
@@ -30,82 +32,47 @@
         </Setter>
     </Style>
 
-    <Style x:Key="CustomWindowSystemButtonStyle" TargetType="Button" BasedOn="{StaticResource CustomWindowButtonStyle}" />
-
-    <Style x:Key="CustomWindowSystemButtonPathStyle" TargetType="Path">
-        <Setter Property="UseLayoutRounding" Value="True" />
-        <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="RenderTransformOrigin" Value="0.5,0.5" />
-        <Setter Property="Fill" Value="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" />
-    </Style>
-
+    <DataTemplate x:Key="CustomWindowSytemButtonContentTemplate">
+        <Path Data="{Binding}" UseLayoutRounding="True" SnapsToDevicePixels="True" RenderTransformOrigin="0.5, 0.5" Fill="Black" />
+    </DataTemplate>
+    
     <ControlTemplate x:Key="CustomWindowTemplate" TargetType="{x:Type Controls:CustomWindow}">
         <AdornerDecorator>
             <Grid Name="LayoutRoot">
                 <DockPanel Background="Transparent">
-                    <Border DockPanel.Dock="Top" Background="{TemplateBinding TitleBarBackground}" Height="{TemplateBinding TitleBarHeight}">
-                        <Grid Name="PART_TitleBar" WindowChrome.IsHitTestVisibleInChrome="True">
+                    <Border DockPanel.Dock="Top" Background="{TemplateBinding ActualHeaderBackground}" Height="{TemplateBinding HeaderHeight}">
+                        <Grid Name="PART_Header" WindowChrome.IsHitTestVisibleInChrome="True">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
 
-                            <Image Grid.Column="0" Source="{TemplateBinding TitleBarIcon}" Name="PART_Icon"
-                                   Visibility="{TemplateBinding ShowIcon, Converter={StaticResource VisibilityConverter}}"
-                                   Width="{TemplateBinding IconWidth}" Height="{TemplateBinding IconHeight}"
-                                   Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" 
-                                   SnapsToDevicePixels="True" UseLayoutRounding="True" RenderOptions.BitmapScalingMode="Linear" />
+                            <ContentPresenter Grid.Column="0" ContentSource="HeaderIcon" Name="PART_Icon" VerticalAlignment="Stretch"
+                                              Visibility="{TemplateBinding ShowHeaderIcon, Converter={Markup:VisibilityConverter}}" />
 
-                            <ContentControl Grid.Column="1" Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}" 
-                                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Focusable="False">
-                                <ContentControl.Resources>
-                                    <Style TargetType="Button">
-                                        <Setter Property="IsTabStop" Value="False" />
-                                        <Setter Property="Foreground" Value="White" />
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="Button">
-                                                    <Border Name="Bd" Background="Transparent" Padding="5,3,5,3">
-                                                        <ContentPresenter ContentSource="Content" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-                                                    </Border>
-
-                                                    <ControlTemplate.Triggers>
-                                                        <Trigger Property="IsMouseOver" Value="True">
-                                                            <Setter TargetName="Bd" Property="Background" Value="#80CBEB" />
-                                                        </Trigger>
-
-                                                        <Trigger Property="IsPressed" Value="True">
-                                                            <Setter TargetName="Bd" Property="Background" Value="#086F9E" />
-                                                        </Trigger>
-                                                    </ControlTemplate.Triggers>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </ContentControl.Resources>
-                            </ContentControl>
+                            <ContentPresenter Grid.Column="1" ContentSource="Header" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Focusable="False" />
 
                             <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Button Name="Minimize" Command="{TemplateBinding MinimizeCommand}" Style="{StaticResource CustomWindowSystemButtonStyle}" Width="{TemplateBinding TitleBarHeight}" >
-                                    <Path Data="F1M0,6L0,9 9,9 9,6 0,6z" Style="{StaticResource CustomWindowSystemButtonPathStyle}" />
-                                </Button>
+                                <Button Name="Minimize" Style="{TemplateBinding SystemButtonStyle}"
+                                        Content="{TemplateBinding MinimizeButtonContent}" ContentTemplate="{TemplateBinding MinimizeButtonContentTemplate}"
+                                        Command="{Binding MinimizeCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Controls:CustomWindow}}" />
 
-                                <Button Name="Maximize" Command="{TemplateBinding MaximizeCommand}" Style="{StaticResource CustomWindowSystemButtonStyle}" Width="{TemplateBinding TitleBarHeight}" >
-                                    <Path Data="F1M0,0L0,9 9,9 9,0 0,0 0,3 8,3 8,8 1,8 1,3z" Style="{StaticResource CustomWindowSystemButtonPathStyle}" />
-                                </Button>
+                                <Button Name="Maximize" Style="{TemplateBinding SystemButtonStyle}"
+                                        Content="{TemplateBinding MaximizeButtonContent}" ContentTemplate="{TemplateBinding MaximizeButtonContentTemplate}"
+                                        Command="{Binding MaximizeCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Controls:CustomWindow}}" />
 
-                                <Button Name="Restore" Command="{TemplateBinding RestoreCommand}" Style="{StaticResource CustomWindowSystemButtonStyle}" Width="{TemplateBinding TitleBarHeight}">
-                                    <Path Data="F1M0,10L0,3 3,3 3,0 10,0 10,2 4,2 4,3 7,3 7,6 6,6 6,5 1,5 1,10z M1,10L7,10 7,7 10,7 10,2 9,2 9,6 6,6 6,9 1,9z" Style="{StaticResource CustomWindowSystemButtonPathStyle}" />
-                                </Button>
+                                <Button Name="Restore" Style="{TemplateBinding SystemButtonStyle}"
+                                        Content="{TemplateBinding RestoreButtonContent}" ContentTemplate="{TemplateBinding RestoreButtonContentTemplate}"
+                                        Command="{Binding RestoreCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Controls:CustomWindow}}" />
 
-                                <Button Name="Close" Command="{TemplateBinding CloseCommand}" Style="{StaticResource CustomWindowSystemButtonStyle}" Width="{TemplateBinding TitleBarHeight}">
-                                    <Path Data="F1M0,0L2,0 5,3 8,0 10,0 6,4 10,8 8,8 5,5 2,8 0,8 4,4 0,0z" Style="{StaticResource CustomWindowSystemButtonPathStyle}" />
-                                </Button>
+                                <Button Name="Close" Style="{TemplateBinding SystemButtonStyle}"
+                                        Content="{TemplateBinding CloseButtonContent}" ContentTemplate="{TemplateBinding CloseButtonContentTemplate}"
+                                        Command="{Binding CloseCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Controls:CustomWindow}}" />
                             </StackPanel>
                         </Grid>
                     </Border>
-
+                    
                     <Border Background="{TemplateBinding Background}">
                         <ContentPresenter Content="{TemplateBinding Content}" ClipToBounds="True" />
                     </Border>
@@ -140,8 +107,20 @@
                 <Setter TargetName="Restore" Property="Visibility" Value="Collapsed" />
             </Trigger>
 
+            <Trigger Property="ShowCloseButton" Value="False">
+                <Setter TargetName="Close" Property="Visibility" Value="Collapsed" />
+            </Trigger>
+
             <Trigger Property="ShowMaximizeButton" Value="False">
                 <Setter TargetName="Maximize" Property="Visibility" Value="Collapsed" />
+            </Trigger>
+
+            <Trigger Property="ShowMinimizeButton" Value="False">
+                <Setter TargetName="Minimize" Property="Visibility" Value="Collapsed" />
+            </Trigger>
+
+            <Trigger Property="ShowRestoreButton" Value="False">
+                <Setter TargetName="Restore" Property="Visibility" Value="Collapsed" />
             </Trigger>
 
             <!--<MultiTrigger>
@@ -157,21 +136,49 @@
     <Style x:Key="{x:Type Controls:CustomWindow}" TargetType="{x:Type Controls:CustomWindow}">
         <Setter Property="Template" Value="{StaticResource CustomWindowTemplate}" />
         <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Background" Value="White" />
-        <Setter Property="TitleBarHeight" Value="28" />
-        <Setter Property="TitleBarBackground" Value="#4BA2D8" />
-        <Setter Property="TitleBarForeground" Value="White" />
-        <Setter Property="IconWidth" Value="20" />
-        <Setter Property="IconHeight" Value="20" />
-        <Setter Property="ShowIcon" Value="False" />
+        <Setter Property="Background" Value="{DynamicResource ResourceKey={x:Static SystemColors.WindowBrushKey}}" />
+        <Setter Property="Foreground" Value="{DynamicResource ResourceKey={x:Static SystemColors.WindowTextBrushKey}}" />
+
+        <Setter Property="HeaderHeight" Value="29" />
+        <Setter Property="HeaderFontFamily" Value="{DynamicResource ResourceKey={x:Static SystemFonts.CaptionFontFamilyKey}}" />
+        <Setter Property="HeaderFontSize" Value="{DynamicResource ResourceKey={x:Static SystemFonts.CaptionFontSizeKey}}" />
+        <Setter Property="HeaderFontWeight" Value="{DynamicResource ResourceKey={x:Static SystemFonts.CaptionFontWeightKey}}" />
+        <Setter Property="HeaderFontStyle" Value="{DynamicResource ResourceKey={x:Static SystemFonts.CaptionFontStyleKey}}" />
+        <Setter Property="ActiveHeaderBackground" Value="{DynamicResource ResourceKey={x:Static SystemColors.ActiveCaptionBrushKey}}" />
+        <Setter Property="ActiveHeaderForeground" Value="{DynamicResource ResourceKey={x:Static SystemColors.ActiveCaptionTextBrushKey}}" />
+        <Setter Property="InactiveHeaderBackground" Value="{DynamicResource ResourceKey={x:Static SystemColors.InactiveCaptionBrushKey}}" />
+        <Setter Property="InactiveHeaderForeground" Value="{DynamicResource ResourceKey={x:Static SystemColors.InactiveCaptionTextBrushKey}}" />
+
+        <Setter Property="SystemButtonStyle" Value="{StaticResource CustomWindowSytemButtonStyle}" />
+        <Setter Property="MinimizeButtonContent" Value="F1M0,6L0,9 9,9 9,6 0,6z" />
+        <Setter Property="MinimizeButtonContentTemplate" Value="{StaticResource CustomWindowSytemButtonContentTemplate}" />
+        <Setter Property="MaximizeButtonContent" Value="F1M0,0L0,9 9,9 9,0 0,0 0,3 8,3 8,8 1,8 1,3z" />
+        <Setter Property="MaximizeButtonContentTemplate" Value="{StaticResource CustomWindowSytemButtonContentTemplate}" />
+        <Setter Property="RestoreButtonContent" Value="F1M0,10L0,3 3,3 3,0 10,0 10,2 4,2 4,3 7,3 7,6 6,6 6,5 1,5 1,10z M1,10L7,10 7,7 10,7 10,2 9,2 9,6 6,6 6,9 1,9z" />
+        <Setter Property="RestoreButtonContentTemplate" Value="{StaticResource CustomWindowSytemButtonContentTemplate}" />
+        <Setter Property="CloseButtonContent" Value="F1M0,0L2,0 5,3 8,0 10,0 6,4 10,8 8,8 5,5 2,8 0,8 4,4 0,0z" />
+        <Setter Property="CloseButtonContentTemplate" Value="{StaticResource CustomWindowSytemButtonContentTemplate}" />
+
+        <Setter Property="HeaderIcon" Value="{Binding Icon, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="HeaderIconTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Image Source="{Binding}" RenderOptions.BitmapScalingMode="Linear"
+                           Width="20" Height="20" Margin="5,3,0,3" VerticalAlignment="Center" />
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+
         <Setter Property="Header" Value="{Binding Title, RelativeSource={RelativeSource Self}}" />
         <Setter Property="HeaderTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <TextBlock Margin="7,-2,0,0" Text="{Binding}" 
-                               FontSize="14" FontFamily="Segoe UI" 
-                               Foreground="White" VerticalAlignment="Center" 
-                               WindowChrome.IsHitTestVisibleInChrome="False" />
+                    <TextBlock Text="{Binding}" Margin="5,0,0,0" VerticalAlignment="Center" WindowChrome.IsHitTestVisibleInChrome="False"
+                               Foreground="{Binding ActualHeaderForeground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Controls:CustomWindow}}"
+                               FontFamily="{Binding HeaderFontFamily, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Controls:CustomWindow}}"
+                               FontSize="{Binding HeaderFontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Controls:CustomWindow}}"
+                               FontStyle="{Binding HeaderFontStyle, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Controls:CustomWindow}}"
+                               FontWeight="{Binding HeaderFontWeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Controls:CustomWindow}}" />
                 </DataTemplate>
             </Setter.Value>
         </Setter>

@@ -1,0 +1,2 @@
+﻿ScreenPresenter -> Page(?)Presenter
+Remove IView, IPresenter

@@ -34,7 +34,7 @@
 
                     <Border Background="{TemplateBinding OverlayBrush}" Opacity="{TemplateBinding OverlayOpacity}"
                             HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
-                            Visibility="{Markup:BoolVisibility HasItems, RelativeSource={RelativeSource TemplatedParent}}" />
+                            Visibility="{Binding HasItems, RelativeSource={RelativeSource TemplatedParent}, Converter={Markup:VisibilityConverter}}" />
 
                     <ContentControl Name="PART_Host" Focusable="False" FocusVisualStyle="{x:Null}" FocusManager.IsFocusScope="True">
                         <ItemsPresenter HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />

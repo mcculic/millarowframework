@@ -109,7 +109,5 @@ namespace Millarow.Presentation.WPF.Controls
             set { SetValue(CommandParameterProperty, value); }
         }
         #endregion
-
-        
     }
 }

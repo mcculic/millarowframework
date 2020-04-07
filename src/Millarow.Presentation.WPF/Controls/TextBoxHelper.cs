@@ -4,7 +4,7 @@ namespace Millarow.Presentation.WPF.Controls
 {
     public static class TextBoxHelper
     {
-        public static bool AddText(this TextBox self, string text)
+        public static bool PasteText(this TextBox self, string text)
         {
             if (self.IsReadOnly || !self.IsEnabled)
                 return false;

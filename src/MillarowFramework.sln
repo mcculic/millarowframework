@@ -17,8 +17,11 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Millarow.Shared", "Millarow
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Millarow.Rest", "Millarow.Rest\Millarow.Rest.csproj", "{C41DF659-6990-427A-AF10-E6CBDE265FE9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Millarow.Presentation.WPF.Demo", "Millarow.Presentation.WPF.Demo\Millarow.Presentation.WPF.Demo.csproj", "{75640CC9-BA35-475D-B2BB-243EF969DFA7}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Millarow.Shared\Millarow.Shared.projitems*{75640cc9-ba35-475d-b2bb-243ef969dfa7}*SharedItemsImports = 4
 		Millarow.Shared\Millarow.Shared.projitems*{993f510a-a272-4d93-94df-347d9fe613bf}*SharedItemsImports = 13
 		Millarow.Shared\Millarow.Shared.projitems*{dbc13bd2-1e76-411e-900e-ca9f378d8a76}*SharedItemsImports = 4
 		Millarow.Shared\Millarow.Shared.projitems*{e8111517-1937-440f-b992-d8e64b7e7357}*SharedItemsImports = 4
@@ -52,6 +55,10 @@ Global
 		{C41DF659-6990-427A-AF10-E6CBDE265FE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C41DF659-6990-427A-AF10-E6CBDE265FE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C41DF659-6990-427A-AF10-E6CBDE265FE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75640CC9-BA35-475D-B2BB-243EF969DFA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75640CC9-BA35-475D-B2BB-243EF969DFA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75640CC9-BA35-475D-B2BB-243EF969DFA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75640CC9-BA35-475D-B2BB-243EF969DFA7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

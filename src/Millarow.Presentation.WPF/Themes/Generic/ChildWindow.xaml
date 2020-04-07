@@ -6,14 +6,14 @@
     <ControlTemplate x:Key="ChildWindowTemplate" TargetType="{x:Type Controls:ChildWindow}">
         <Grid>
             <!--TODO при прозрачном фоне все становится черным из-за тени-->
-            <Controls:ShadowBox Visibility="{Markup:BoolVisibility DropShadow, RelativeSource={RelativeSource TemplatedParent}}" Color="Gray" BlurRadius="16" />
+            <Controls:ShadowBox Visibility="{Binding DropShadow, RelativeSource={RelativeSource TemplatedParent}, Converter={Markup:VisibilityConverter}}" Color="Gray" BlurRadius="16" />
             
             <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
                 <DockPanel LastChildFill="True">
                     <Border DockPanel.Dock="Top" Background="{TemplateBinding TitleBackground}"
                             HorizontalAlignment="Stretch" Name="PART_Title"
                             MinHeight="{TemplateBinding TitleMinHeight}" 
-                            Visibility="{Markup:BoolVisibility ShowTitle, RelativeSource={RelativeSource TemplatedParent}}">
+                            Visibility="{Binding ShowTitle, RelativeSource={RelativeSource TemplatedParent}, Converter={Markup:VisibilityConverter}}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
@@ -23,7 +23,7 @@
 
                             <Border Grid.Column="0" Name="PART_Icon" Padding="{TemplateBinding IconPadding}" 
                                     VerticalAlignment="{TemplateBinding IconVerticalAlignment}"
-                                    Visibility="{Markup:BoolVisibility ShowIcon, RelativeSource={RelativeSource TemplatedParent}}">
+                                    Visibility="{Binding ShowIcon, RelativeSource={RelativeSource TemplatedParent}, Converter={Markup:VisibilityConverter}}">
                                 <ContentPresenter ContentSource="Icon" />
                             </Border>
 
@@ -36,7 +36,7 @@
                             </Label>
 
                             <Border Grid.Column="2" Name="PART_Commands" Padding="{TemplateBinding CommandsPadding}"
-                                    Visibility="{Markup:BoolVisibility ShowCommands, RelativeSource={RelativeSource TemplatedParent}}"
+                                    Visibility="{Binding ShowCommands, RelativeSource={RelativeSource TemplatedParent}, Converter={Markup:VisibilityConverter}}"
                                     VerticalAlignment="{TemplateBinding CommandsVerticalAlignment}">
                                 <ContentPresenter ContentSource="Commands" />
                             </Border>

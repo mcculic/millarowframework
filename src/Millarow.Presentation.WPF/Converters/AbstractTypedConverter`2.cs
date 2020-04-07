@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Windows;
 using System.Windows.Data;
 
 namespace Millarow.Presentation.WPF.Converters
@@ -18,7 +19,7 @@ namespace Millarow.Presentation.WPF.Converters
             if (value is TFrom typedValue)
                 return Convert(typedValue, parameter, culture);
             else
-                return null;
+                return DependencyProperty.UnsetValue;
         }
 
         object IValueConverter.ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -26,7 +27,7 @@ namespace Millarow.Presentation.WPF.Converters
             if (value is TTo typedValue)
                 return ConvertBack(typedValue, parameter, culture);
             else
-                return null;
+                return DependencyProperty.UnsetValue;
         }
     }
 }

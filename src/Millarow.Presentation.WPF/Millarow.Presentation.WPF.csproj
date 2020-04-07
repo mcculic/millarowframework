@@ -57,10 +57,6 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Controls\EmbeddedKeyboard.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -127,15 +123,11 @@
     <Compile Include="Controls\LineBusyIndicator.cs" />
     <Compile Include="Controls\ModalHost.cs" />
     <Compile Include="Controls\ModalHostItem.cs" />
-    <Compile Include="Controls\EmbeddedKeyboard.xaml.cs">
-      <DependentUpon>EmbeddedKeyboard.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\EmbeddedKeyboardLayout.cs" />
-    <Compile Include="Controls\EmbeddedKeyboardSymbol.cs" />
     <Compile Include="Controls\PopupContainer.cs" />
     <Compile Include="Controls\PropertyList.cs" />
     <Compile Include="Controls\PropertyListItem.cs" />
     <Compile Include="Controls\PropertyListItemHeaderAnchor.cs" />
+    <Compile Include="Controls\RadioButtonGroup.cs" />
     <Compile Include="Controls\ShadowBox.cs" />
     <Compile Include="Controls\SwitchControl.cs" />
     <Compile Include="Controls\SwitchControlItem.cs" />
@@ -151,6 +143,7 @@
     <Compile Include="Converters\KeyValueConverterItem.cs" />
     <Compile Include="Converters\MultiplyConverter.cs" />
     <Compile Include="Converters\PropertyTitleConverter`1.cs" />
+    <Compile Include="Converters\BoolToVisibilityConverterMode.cs" />
     <Compile Include="Framework\AbstractCommand`1.cs" />
     <Compile Include="Framework\AbstractCommand`2.cs" />
     <Compile Include="Framework\ListSyncManager`1.cs" />
@@ -184,8 +177,8 @@
     <Compile Include="Interop\Taskbar.cs" />
     <Compile Include="Markup\AbstractBindingExtension.cs" />
     <Compile Include="Markup\AppPropertyExtension.cs" />
-    <Compile Include="Markup\BoolVisibilityExtension.cs" />
     <Compile Include="Markup\PropertyTitleExtension.cs" />
+    <Compile Include="Markup\VisibilityConverterExtension.cs" />
     <Compile Include="MVP\AsyncCommand.cs" />
     <Compile Include="MVP\AsyncCommand`1.cs" />
     <Compile Include="MVP\AsyncCommand`2.cs" />

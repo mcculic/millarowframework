@@ -1,53 +1,44 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Globalization;
+using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Millarow.Presentation.WPF.Converters
 {
-    public class NameToImageConverter : AbstractTypedConverter<string, ImageSource>
+    public class NameToImageConverter : AbstractTypedConverter<string, object>
     {
-        private readonly Dictionary<string, ImageSource> _cache;
-
-        public NameToImageConverter()
-        {
-            _cache = new Dictionary<string, ImageSource>();
-        }
+        private ConcurrentDictionary<string, ImageSource> _cache;
 
         public NameToImageConverter(string uriStringFormat)
-            : this()
         {
             UriStringFormat = uriStringFormat;
         }
 
-        public override ImageSource Convert(string value, object parameter, CultureInfo culture)
+        public override object Convert(string value, object parameter, CultureInfo culture)
         {
-            if (string.IsNullOrEmpty(UriStringFormat))
-                return null;
+            if (UriStringFormat == null)
+                throw new InvalidOperationException($"Property {nameof(UriStringFormat)} must be setted before calling the Convert method.");
 
-            var name = value as string;
-            if (string.IsNullOrWhiteSpace(name))
-                return null;
-
-            if (!_cache.TryGetValue(name, out var image))
+            if (value is string name)
             {
-                image = LoadBitmap(new Uri(string.Format(UriStringFormat, value.ToString(), UriKind.RelativeOrAbsolute)));
-
                 if (UseCache)
-                    _cache.Add(name, image);
+                    return _cache.GetOrAdd(name, LoadBitmap);
+
+                return LoadBitmap(name);
             }
 
-            return image;
+            return DependencyProperty.UnsetValue;
         }
 
-        private BitmapImage LoadBitmap(Uri sourceUri)
+        private BitmapImage LoadBitmap(string name)
         {
             var ret = new BitmapImage();
 
             ret.BeginInit();
             ret.CacheOption = BitmapCacheOption.OnLoad;
-            ret.UriSource = sourceUri;
+            ret.UriSource = new Uri(string.Format(UriStringFormat, name, UriKind.RelativeOrAbsolute));
             ret.EndInit();
             ret.Freeze();
 
@@ -56,6 +47,10 @@ namespace Millarow.Presentation.WPF.Converters
 
         public string UriStringFormat { get; set; }
 
-        public bool UseCache { get; set; } = true;
+        public bool UseCache
+        {
+            get => _cache != null;
+            set => _cache = value ? new ConcurrentDictionary<string, ImageSource>() : null;
+        }
     }
 }

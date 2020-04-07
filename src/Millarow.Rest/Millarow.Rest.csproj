@@ -4,11 +4,12 @@
 	<Product>Millarow Framework</Product>
     <Authors>Igor Kulik</Authors>
     <Copyright>© Igor Kulik 2020</Copyright>
-    <Version>0.5.0</Version>
-    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <Version>0.5.1</Version>
     <PackageProjectUrl />
     <RepositoryUrl>https://github.com/mcculic/millarowframework</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
   
   <ItemGroup>

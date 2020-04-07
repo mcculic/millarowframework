@@ -7,20 +7,15 @@
     <AssemblyVersion>0.5.0.0</AssemblyVersion>
     <FileVersion>0.5.0.0</FileVersion>
     <Version>0.5.0</Version>
-    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageLicenseFile></PackageLicenseFile>
     <RepositoryUrl>https://github.com/mcculic/millarowframework</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <Description>Millarow.Presentation</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
   
   <ItemGroup>
     <ProjectReference Include="..\Millarow.Common\Millarow.Common.csproj" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <None Include="..\..\LICENSE.txt">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
   </ItemGroup>
   
   <Import Project="..\Millarow.Shared\Millarow.Shared.projitems" Label="Shared" />
